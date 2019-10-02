@@ -1,0 +1,133 @@
+{
+  version: 8
+  center: [
+    135
+    35
+  ]
+  zoom: 15
+  sources: {
+    v: {
+      type: vector
+      tiles: [
+        https://wata909.github.io/maff_fude/mvt/{z}/{x}/{y}.pbf
+      ]
+      attribution: 農林水産省
+      minzoom: 13
+      maxzoom: 13
+    }
+    v16: {
+      type: vector
+      tiles: [
+        https://wata909.github.io/maff_fude_z16/mvt/{z}/{x}/{y}.pbf
+      ]
+      attribution: 農林水産省
+      minzoom: 16
+      maxzoom: 16
+    }
+    v8: {
+      type: vector
+      tiles: [
+        https://wata909.github.io/maff_fude/mvt/{z}/{x}/{y}.pbf
+      ]
+      attribution: 農林水産省
+      minzoom: 8
+      maxzoom: 8
+    }
+    i: {
+      type: raster
+      tiles: [
+        https://maps.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg
+      ]
+      attribution: 国土地理院
+      tileSize: 256
+      minzoom: 0
+      maxzoom: 18
+    }
+  }
+  sprite: https://hfu.github.io/unite-sprite/sprite
+  glyphs: https://vectortiles.xyz/fonts/{fontstack}/{range}.pbf
+  layers: [
+    {
+      id: background
+      type: background
+      paint: {
+        background-color: [
+          rgb
+          0
+          0
+          0
+        ]
+      }
+    }
+    {
+      id: i
+      type: raster
+      source: i
+      minzoom: 0
+      maxzoom: 18
+    }
+    {
+      id: fude
+      type: fill
+      source: v
+      source-layer: fude
+      minzoom: 13
+      maxzoom: 16
+      paint: {
+        fill-color: [
+          rgb
+          255
+          255
+          0
+        ]
+        fill-opacity: [
+          case
+          [
+            boolean
+            [
+              feature-state
+              hover
+            ]
+            false
+          ]
+          0.1
+          0.5
+        ]
+      }
+    }
+    {
+      id: fude8
+      type: fill
+      source: v8
+      source-layer: fude
+      minzoom: 8
+      maxzoom: 13
+      paint: {
+        fill-color: [
+          rgba
+          255
+          255
+          0
+          0.5
+        ]
+      }
+    }
+     {
+      id: fude16
+      type: fill
+      source: v16
+      source-layer: fude
+      minzoom: 16
+      paint: {
+        fill-color: [
+          rgba
+          255
+          255
+          0
+          0.5
+        ]
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,5 @@
+for i in *.geojson;
+ do  tippecanoe --o ${i%.geojson}.mbtiles -R ${i:5:1}/${i:7:3}/${i:11:2} -f -z 14 -l fude -pC -pk  -pf -P $i; 
+done
+
+tile-join -e mvt -pk -pC *.mbtiles
